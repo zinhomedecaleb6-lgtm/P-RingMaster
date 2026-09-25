@@ -1,0 +1,21 @@
+# PlateformIO (Firmware ESP32)
+.pio/
+
+# VS Code
+.vscode/
+.browse.c_cpp.db*
+c_cpp_properties.json
+launch.json
+ipch
+
+# Base de données SQLite locale
+p_ringmaster.db
+
+# Python / Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+env/

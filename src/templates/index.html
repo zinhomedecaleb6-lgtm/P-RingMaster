@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord - P-RingMaster</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #007BFF; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #e9ecef; margin: 8px 0; padding: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="time"], input[type="text"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; width: 100%; }
+        button:hover { background: #218838; }
+        .logout { display: inline-block; margin-top: 20px; color: red; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>P-RingMaster - Gestion des Sonneries</h1>
+        <p>Bienvenue sur l'espace de votre établissement scolaire.</p>
+        
+        <hr>
+
+        <h3>Ajouter un horaire de sonnerie</h3>
+        <form method="POST" action="/add_schedule">
+            <div class="form-group">
+                <label for="time">Heure :</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <div class="form-group">
+                <label for="label">Libellé (ex: Début des cours, Pause...) :</label>
+                <input type="text" id="label" name="label" required>
+            </div>
+            <button type="submit">Enregistrer l'horaire</button>
+        </form>
+
+        <hr>
+
+        <h3>Horaires programmés :</h3>
+        <ul>
+            {% if schedules %}
+                {% for sched in schedules %}
+                    <li>
+                        <span><strong>{{ sched[1] }}</strong> - {{ sched[2] }}</span>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>Aucun horaire enregistré pour le moment.</p>
+            {% endif %}
+        </ul>
+
+        <a class="logout" href="/logout">Se déconnecter</a>
+    </div>
+</body>
+</html>
