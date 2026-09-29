@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: p-ringmaster
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: zinhomedecaleb6@gmail.com
+      - key: ADMIN_NAME
+        value: ADMINISTRATEUR P-RingMaster
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: p-ringmaster-db
+          property: connectionString
+databases:
+  - name: p-ringmaster-db
+    databaseName: p_ringmaster
