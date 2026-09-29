@@ -1,6 +1,7 @@
 services:
   - type: web
     name: p-ringmaster
+    plan: free
     runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
@@ -25,3 +26,4 @@ services:
 databases:
   - name: p-ringmaster-db
     databaseName: p_ringmaster
+    plan: free
